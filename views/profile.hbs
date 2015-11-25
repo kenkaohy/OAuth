@@ -1,0 +1,71 @@
+
+<div class="row">
+  <div class="col s2 m12">
+    <a href="/logout" class="waves-effect waves-light btn">&nbsp;logout&nbsp;<i class="material-icons">exit_to_app</i></a>
+  </div> 
+</div>
+
+<div class="row">
+  <ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">face</i>Local</div>
+      <div class="collapsible-body">
+      <div class="row">
+        <div class="col s7 push-s5">
+          <p>
+            Username:&nbsp;{{user.local.email}}<br>
+            Password:&nbsp;{{user.local.password}}<br>  
+          </p>     
+         </div>
+      </div>
+      <div class="row">
+               <div class="col s5 pull-s7"><a class="waves-effect waves-light btn">unlink</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="mdi mdi-facebook" style="color:#6d84b4;"></i>facebook</div>
+      <div class="collapsible-body">
+          <div class="row">
+          <div class="col s7 push-s5">
+            <p>
+            Username:{{user.facebook.firstName}}{{user.facebook.lastName}}<br>
+            Email:{{user.facebook.email}}<br>  
+            Facebook Id:{{user.facebook.id}}<br>
+            Token:{{user.facebook.token}}<br>
+            </p>     
+          </div>
+        </div>
+        <div class="row">
+                <div class="col s5 pull-s7"><a class="waves-effect waves-light btn">unlink</a></div>
+        </div>
+      
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="mdi mdi-google" style="color:#db4437;"></i>google</div>
+      <div class="collapsible-body">
+                 <div class="row">
+          <div class="col s7 push-s5">
+            <p>
+            Username:{{user.google.firstName}}{{user.google.lastName}}<br>
+            Email:{{user.google.email}}<br>  
+            Facebook Id:{{user.google.id}}<br>
+            Token:{{user.google.token}}<br>
+            </p>     
+          </div>
+        </div>
+        <div class="row">
+                <div class="col s5 pull-s7"><a class="waves-effect waves-light btn">unlink</a></div>
+        </div>
+        </div>
+    </li>
+     <li>
+      <div class="collapsible-header"><i class="material-icons" style="color:#1798c1;">cloud</i>salesforce.com</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+        <li>
+      <div class="collapsible-header"><i class="mdi mdi-twitter" style="color:#4099FF;"></i>twitter</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+  </ul>
+</div>

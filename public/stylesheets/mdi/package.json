@@ -1,0 +1,86 @@
+{
+  "_args": [
+    [
+      "mdi",
+      "/Users/kenkao/Box Sync/Source Code/nodejs/OAuth"
+    ]
+  ],
+  "_from": "mdi@*",
+  "_id": "mdi@1.3.41",
+  "_inCache": true,
+  "_location": "/mdi",
+  "_nodeVersion": "0.12.2",
+  "_npmUser": {
+    "email": "admin@templarian.com",
+    "name": "templarian"
+  },
+  "_npmVersion": "3.3.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdi",
+    "raw": "mdi",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/mdi/-/mdi-1.3.41.tgz",
+  "_shasum": "a0e758da3252db8c20cd8ff0393f096d9d5acf76",
+  "_shrinkwrap": null,
+  "_spec": "mdi",
+  "_where": "/Users/kenkao/Box Sync/Source Code/nodejs/OAuth",
+  "author": {
+    "name": "Austin Andrews",
+    "url": "http://twitter.com/templarian"
+  },
+  "bugs": {
+    "url": "https://github.com/Templarian/MaterialDesign/issues"
+  },
+  "dependencies": {},
+  "description": "Dist for Material Design Webfont. This includes the Stock and Community icons in a single webfont collection.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "a0e758da3252db8c20cd8ff0393f096d9d5acf76",
+    "tarball": "http://registry.npmjs.org/mdi/-/mdi-1.3.41.tgz"
+  },
+  "gitHead": "fb597a735ce9f052b938d6977d238bffc5f7c2ed",
+  "homepage": "http://materialdesignicons.com",
+  "installable": true,
+  "keywords": [
+    "design",
+    "icons",
+    "material",
+    "webfont"
+  ],
+  "licenses": [
+    {
+      "type": "OFL-1.1",
+      "url": "http://scripts.sil.org/OFL"
+    },
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/mit-license.html"
+    }
+  ],
+  "main": "preview.html",
+  "maintainers": [
+    {
+      "name": "templarian",
+      "email": "admin@templarian.com"
+    }
+  ],
+  "name": "mdi",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Templarian/MaterialDesign-Webfont.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.3.41"
+}

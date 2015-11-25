@@ -1,0 +1,39 @@
+
+<!--error meg-->
+<div class="row">
+    <div class="col s12">
+       {{#if message}}
+         <p class="red-text text-darken-2">{{message}}</p>
+        {{/if}}     
+       {{#unless user}}
+         <p class="orange-text darken-4">Please login before access profile</p>
+        {{/unless}}       
+    </div>
+</div>
+
+<div class="row">
+    <!-- LOGIN FORM -->
+    <form class="col s12" action="/login" method="post">
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input  id="email" type="email" class="validate" name="email">
+                <label for="email" data-error="wrong" data-success="good!">Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">stars</i>
+                <input  id="password" type="password" class="validate" name="password">
+                <label for="password">Password</label>
+            </div>
+        </div>
+
+
+        <button class="btn waves-effect waves-light" type="submit">login
+            <i class="material-icons right">send</i>
+        </button>
+
+    </form>
+</div>
