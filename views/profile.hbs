@@ -11,7 +11,7 @@
       <div class="collapsible-header"><i class="material-icons">face</i>Local</div>
       <div class="collapsible-body">
       <div class="row">
-        <div class="col s7 push-s5">
+          <div class="col s10 pull-s2">
           <p>
             Username:&nbsp;{{user.local.email}}<br>
             Password:&nbsp;{{user.local.password}}<br>  
@@ -25,8 +25,9 @@
     <li>
       <div class="collapsible-header"><i class="mdi mdi-facebook" style="color:#6d84b4;"></i>facebook</div>
       <div class="collapsible-body">
+        {{#if user.facebook.token}}
           <div class="row">
-          <div class="col s7 push-s5">
+          <div class="col s10 pull-s2">
             <p>
             Username:{{user.facebook.firstName}}{{user.facebook.lastName}}<br>
             Email:{{user.facebook.email}}<br>  
@@ -36,16 +37,21 @@
           </div>
         </div>
         <div class="row">
-                <div class="col s5 pull-s7"><a class="waves-effect waves-light btn">unlink</a></div>
-        </div>
-      
+                <div class="col s5 pull-s7"><a href="/unlink/facebook" class="waves-effect waves-light btn">unlink</a></div>
+        </div>        
+       {{else}}
+        <div class="row">
+                <div class="col s5 pull-s7"><a href="/connect/facebook" class="waves-effect waves-light btn">Connect facebook</a></div>
+        </div>    
+       {{/if}}
       </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="mdi mdi-google" style="color:#db4437;"></i>google</div>
       <div class="collapsible-body">
-                 <div class="row">
-          <div class="col s7 push-s5">
+      {{#if user.google.token}}
+         <div class="row">
+          <div class="col s10 pull-s2">
             <p>
             Username:{{user.google.firstName}}{{user.google.lastName}}<br>
             Email:{{user.google.email}}<br>  
@@ -55,17 +61,62 @@
           </div>
         </div>
         <div class="row">
-                <div class="col s5 pull-s7"><a class="waves-effect waves-light btn">unlink</a></div>
+           <div class="col s2 pull-s10"><a href="/unlink/google" class="waves-effect waves-light btn">unlink</a></div>
+        </div>        
+      {{else}}
+        <div class="row">
+           <div class="col s2 pull-s10"><a href="/connect/google" class="waves-effect waves-light btn">connect google</a></div>
         </div>
-        </div>
+      {{/if}}  
+      </div>
     </li>
      <li>
       <div class="collapsible-header"><i class="material-icons" style="color:#1798c1;">cloud</i>salesforce.com</div>
-      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+      <div class="collapsible-body">
+       {{#if user.salesforce.token}}
+         <div class="row">
+          <div class="col s10 pull-s2">
+            <p>
+            Username:{{user.salesforce.firstName}}{{user.salesforce.lastName}}<br>
+            Email:{{user.salesforce.email}}<br>  
+            Facebook Id:{{user.salesforce.id}}<br>
+            Token:{{user.salesforce.token}}<br>
+            </p>     
+          </div>
+        </div>
+        <div class="row">
+           <div class="col s2 pull-s10"><a href="/unlink/salesforce" class="waves-effect waves-light btn">unlink</a></div>
+        </div>        
+      {{else}}
+        <div class="row">
+           <div class="col s2 pull-s10"><a href="/connect/salesforce" class="waves-effect waves-light btn">connect salesforce</a></div>
+        </div>
+      {{/if}}       
+      </div>
     </li>
         <li>
       <div class="collapsible-header"><i class="mdi mdi-twitter" style="color:#4099FF;"></i>twitter</div>
-      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+      <div class="collapsible-body">
+      {{#if user.twitter.token}}
+         <div class="row">
+          <div class="col s10 pull-s2">
+            <p>
+            Username:{{user.twitter.firstName}}{{user.twitter.lastName}}<br>
+            Email:{{user.twitter.email}}<br>  
+            Facebook Id:{{user.twitter.id}}<br>
+            Token:{{user.twitter.token}}<br>
+            </p>     
+          </div>
+        </div>
+        <div class="row">
+           <div class="col s2 pull-s10"><a href="/unlink/twitter" class="waves-effect waves-light btn">unlink</a></div>
+        </div>        
+      {{else}}
+        <div class="row">
+           <div class="col s2 pull-s10"><a href="/connect/twitter" class="waves-effect waves-light btn">connect twitter</a></div>
+        </div>
+      {{/if}}          
+      </div>
     </li>
   </ul>
 </div>

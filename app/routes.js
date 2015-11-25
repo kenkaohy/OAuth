@@ -44,7 +44,25 @@ module.exports = function(app, passport){
 	app.get('/auth/google/callback', 
 	  passport.authenticate('google', { successRedirect: '/profile',
 	                                      failureRedirect: '/' }));
-                                          
+     
+    //salesforce route
+
+    //twitter route
+    
+	app.get('/connect/facebook', passport.authorize('facebook', { scope: 'email' }));
+	
+	app.get('/connect/google', passport.authorize('google', { scope: ['profile', 'email'] }));
+
+	app.get('/connect/local', function(req, res){
+		res.render('connect-local.ejs', { message: req.flash('signupMessage')});
+	});
+
+	app.post('/connect/local', passport.authenticate('local-signup', {
+		successRedirect: '/profile',
+		failureRedirect: '/connect/local',
+		failureFlash: true
+	}));
+                                              
     //logout
     app.get('/logout', function(req, res){
         req.logout();

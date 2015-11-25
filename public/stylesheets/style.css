@@ -8,3 +8,7 @@ a {
 }
 
 fb-blue {color: #6d84b4}
+
+p {
+    word-wrap: break-word;
+}
