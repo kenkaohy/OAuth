@@ -16,6 +16,12 @@
     },
     "node/node.d.ts": {
       "commit": "4f7b7e01d3a9622bfab0bef469e169529e60c66b"
+    },
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "b2d17b5dad042e293e77d09f2a30d281325cb606"
+    },
+    "express-handlebars/express-handlebars.d.ts": {
+      "commit": "b2d17b5dad042e293e77d09f2a30d281325cb606"
     }
   }
 }

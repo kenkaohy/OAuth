@@ -17,7 +17,20 @@ var userSchema = mongoose.Schema({
 		token: String,
 		email: String,
 		name: String
+	},
+	twitter: {
+		id: String,
+		token: String,
+		email: String,
+		name: String
+	},
+	salesforce: {
+		id: String,
+		token: String,
+		email: String,
+		name: String
 	}
+	
 });
 
 //create a function for 'userSchema' obj to hash the user password

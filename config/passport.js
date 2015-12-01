@@ -6,11 +6,17 @@ var User = require('../app/models/user');
 var configAuth = require('./auth');
 
 module.exports = function(passport){
-	//save the user data in the session
+    // =========================================================================
+    // passport session setup ==================================================
+    // =========================================================================
+    // required for persistent login sessions
+    // passport needs ability to serialize and unserialize users out of session	
+	
+	// used to serialize the user for the session
 	passport.serializeUser(function(user, done){
 		done(null, user.id);
 	});
-	//looking at whole user info. (e.g. username, password, birthday etc.)
+	// used to deserialize the user
 	passport.deserializeUser(function(id, done){
 		//findById is mongoo function
 		User.findById(id, function(err, user){
@@ -18,7 +24,9 @@ module.exports = function(passport){
 		});
 	});
 	
-	//for local signup strategy
+    // =========================================================================
+    // LOCAL SIGNUP ============================================================
+    // =========================================================================
 	passport.use('local-signup', new LocalStrategy({
 		// will map to html attr 'name'
 		usernameField: 'email',
@@ -50,8 +58,9 @@ module.exports = function(passport){
 			})
 		});
 	}));
-	
-	//for local login strategy
+    // =========================================================================
+    // LOCAL LOGIN =============================================================
+    // =========================================================================
 	passport.use('local-login', new LocalStrategy({
 		// will map to html attr 'name'
 		usernameField: 'email',
@@ -79,7 +88,9 @@ module.exports = function(passport){
 	}));
 
 	
-	//Facrbook strategy	
+    // =========================================================================
+    // FACEBOOK ================================================================
+    // =========================================================================
 	passport.use(new FacebookStrategy({
 	    clientID: configAuth.facebookAuth.clientID,
 	    clientSecret: configAuth.facebookAuth.clientSecret,
@@ -118,7 +129,9 @@ module.exports = function(passport){
 
 	));//end Facrbook strategy	
 	
-	//google strategy	
+    // =========================================================================
+    // GOOGLE ================================================================
+    // =========================================================================	
 	passport.use(new GoogleStrategy({
 	    clientID: configAuth.googleAuth.clientID,
 	    clientSecret: configAuth.googleAuth.clientSecret,

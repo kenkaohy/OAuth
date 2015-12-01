@@ -1,10 +1,25 @@
 var User = require('./models/user');
 module.exports = function(app, passport){
-    //index
+// normal routes ===============================================================
+    // show the home page (will also have our login links)
     app.get('/', function(req, res, next) {
         res.render('index', { title: 'OAuth 1st express app' });
     });
-
+    
+    //logout
+    app.get('/logout', function(req, res){
+        req.logout();
+        res.redirect('/');
+	}) 
+    
+     //assign 'profile.hbs' webpage
+    app.get('/profile', isLoggedIn, function(req, res) {
+        res.render('profile', {user:req.user});
+    });   
+    
+// =============================================================================
+// AUTHENTICATE (FIRST LOGIN) ==================================================
+// =============================================================================
     //assign 'login.hbs' webpage
     app.get('/login', function(req, res) {
         res.render('login', {message: req.flash('loginMessage')});
@@ -16,31 +31,30 @@ module.exports = function(app, passport){
             failureFlash: true
         }));
     
-    //assign 'signup.hbs' webpage
+    //show sognup form
     app.get('/signup', function(req, res) {
         res.render('signup', {message: req.flash('signupMessage')});
     });
-
+    //process sognup form
     app.post('/signup', passport.authenticate('local-signup', {
             successRedirect: '/',
             failureRedirect: '/signup',
             failureFlash: true
         }));
-
-    //assign 'profile.hbs' webpage
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile', {user:req.user});
-    });
     
     //facebook route
+    // send to facebook to do the authentication
 	app.get('/auth/facebook', passport.authenticate('facebook'));
+    // handle the callback after facebook has authenticated the user
 	app.get('/auth/facebook/callback', 
 	  passport.authenticate('facebook', { successRedirect: '/profile',
 	                                      failureRedirect: '/' , scope:['email']}));
 
     //google route
+    // send to google to do the authentication
     app.get('/auth/google',
     passport.authenticate('google', {scope: ['profile', 'email']}));
+    // send to google to do the authentication    
 	app.get('/auth/google/callback', 
 	  passport.authenticate('google', { successRedirect: '/profile',
 	                                      failureRedirect: '/' }));
@@ -48,29 +62,39 @@ module.exports = function(app, passport){
     //salesforce route
 
     //twitter route
-    
+// =============================================================================
+// AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
+// =============================================================================    
+    //link facebook account
 	app.get('/connect/facebook', passport.authorize('facebook', { scope: 'email' }));
-	
+    //link google account	
 	app.get('/connect/google', passport.authorize('google', { scope: ['profile', 'email'] }));
-
+    //link local account, display connect-local.hbs page
 	app.get('/connect/local', function(req, res){
-		res.render('connect-local.ejs', { message: req.flash('signupMessage')});
+		res.render('connect-local.hbs', { message: req.flash('signupMessage')});
 	});
-
+    //recive user login info and pass to passport.js
 	app.post('/connect/local', passport.authenticate('local-signup', {
 		successRedirect: '/profile',
 		failureRedirect: '/connect/local',
 		failureFlash: true
 	}));
+
+// =============================================================================
+// UNLINK ACCOUNTS =============================================================
+// =============================================================================
+// used to unlink accounts. for social accounts, just remove the token
+// for local account, remove email and password
+// user account will stay active in case they want to reconnect in the future
+
+
+
                                               
-    //logout
-    app.get('/logout', function(req, res){
-        req.logout();
-        res.redirect('/');
-	})
+
        
 };
 
+// route middleware to ensure user is logged in
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
