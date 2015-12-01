@@ -9,27 +9,32 @@
   <ul class="collapsible popout" data-collapsible="accordion">
     <li>
       <div class="collapsible-header"><i class="material-icons">face</i>Local</div>
-      <div class="collapsible-body">
+      <div class="collapsible-body container">
       <div class="row">
           <div class="col s10 pull-s2">
-          <p>
-            Username:&nbsp;{{user.local.email}}<br>
-            Password:&nbsp;{{user.local.password}}<br>  
-          </p>     
+            {{#if user.local.username}}
+              <p>
+                Username:&nbsp;{{user.local.email}}<br>
+                Password:&nbsp;{{user.local.password}}<br>  
+              </p>            
+            {{else}}
+              <blockquote>You have not yet local signup</blockquote>
+            {{/if}}
+     
          </div>
       </div>
       <div class="row">
         {{#if user.local.username}}
-          <div class="col s5 pull-s7"><a href="/unlink/local" class="waves-effect waves-light btn">unlink</a></div>
+          <div class="col s6 offset-s6"><a href="/unlink/local" class="waves-effect waves-light btn">unlink</a></div>
         {{else}}
-          <div class="col s5 pull-s7"><a href="/connect/local" class="waves-effect waves-light btn">Connect local</a></div>        
+          <div class="col s6 offset-s6"><a href="/connect/local" class="waves-effect waves-light btn">Connect local</a></div>        
         {{/if}}
-
       </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="mdi mdi-facebook" style="color:#6d84b4;"></i>facebook</div>
-      <div class="collapsible-body">
+      
+      <div class="collapsible-body container">
         {{#if user.facebook.token}}
           <div class="row">
           <div class="col s10 pull-s2">
@@ -42,18 +47,19 @@
           </div>
         </div>
         <div class="row">
-                <div class="col s5 pull-s7"><a href="/unlink/facebook" class="waves-effect waves-light btn">unlink</a></div>
+             <div class="col s6 offset-s6"><a href="/unlink/facebook" class="waves-effect waves-light btn">unlink</a></div>
         </div>        
        {{else}}
         <div class="row">
-                <div class="col s5 pull-s7"><a href="/connect/facebook" class="waves-effect waves-light btn">Connect facebook</a></div>
+             <div class="col s6 offset-s6"><a href="/connect/facebook" class="waves-effect waves-light btn">Connect facebook</a></div>
         </div>    
        {{/if}}
-      </div>
+      </div><!--end collapsible-body -->
+      
     </li>
     <li>
       <div class="collapsible-header"><i class="mdi mdi-google" style="color:#db4437;"></i>google</div>
-      <div class="collapsible-body">
+      <div class="collapsible-body container">
       {{#if user.google.token}}
          <div class="row">
           <div class="col s10 pull-s2">
@@ -77,7 +83,7 @@
     </li>
      <li>
       <div class="collapsible-header"><i class="material-icons" style="color:#1798c1;">cloud</i>salesforce.com</div>
-      <div class="collapsible-body">
+      <div class="collapsible-body container">
        {{#if user.salesforce.token}}
          <div class="row">
           <div class="col s10 pull-s2">
@@ -101,7 +107,7 @@
     </li>
         <li>
       <div class="collapsible-header"><i class="mdi mdi-twitter" style="color:#4099FF;"></i>twitter</div>
-      <div class="collapsible-body">
+      <div class="collapsible-body container">
       {{#if user.twitter.token}}
          <div class="row">
           <div class="col s10 pull-s2">

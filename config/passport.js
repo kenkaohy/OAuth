@@ -24,9 +24,7 @@ module.exports = function(passport){
 		});
 	});
 	
-    // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
+	//for local signup strategy
 	passport.use('local-signup', new LocalStrategy({
 		// will map to html attr 'name'
 		usernameField: 'email',
@@ -59,7 +57,7 @@ module.exports = function(passport){
 		});
 	}));
     // =========================================================================
-    // LOCAL LOGIN =============================================================
+    // LOCAL SIGNUP ============================================================
     // =========================================================================
 	passport.use('local-login', new LocalStrategy({
 		// will map to html attr 'name'
@@ -91,39 +89,53 @@ module.exports = function(passport){
     // =========================================================================
     // FACEBOOK ================================================================
     // =========================================================================
-	passport.use(new FacebookStrategy({
+passport.use(new FacebookStrategy({
 	    clientID: configAuth.facebookAuth.clientID,
 	    clientSecret: configAuth.facebookAuth.clientSecret,
 	    callbackURL: configAuth.facebookAuth.callbackURL,
-  		profileFields: ["id", "birthday", "emails","first_name", "last_name", "gender", "picture.width(200).height(200)"],
-  		//profileFields: ["id", "birthday", "emails", "first_name", "last_name", "gender", "picture.width(200).height(200)"],
+      	profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'],		
+	    passReqToCallback: true
 	  },
-	  function(accessToken, refreshToken, profile, done) {
-		  console.log(profile);
+	  function(req, accessToken, refreshToken, profile, done) {
 	    	process.nextTick(function(){
-				//search lcoal mongooDB
-	    		User.findOne({'facebook.id': profile.id}, function(err, user){
-	    			if(err)
-	    				return done(err);
-					//found user
-	    			if(user)
+	    		//user is not logged in yet
+	    		if(!req.user){
+					User.findOne({'facebook.id': profile.id}, function(err, user){
+		    			if(err)
+		    				return done(err);
+		    			if(user)
+		    				return done(null, user);
+		    			else {
+		    				var newUser = new User();
+		    				newUser.facebook.id = profile.id;
+		    				newUser.facebook.token = accessToken;
+		    				newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+		    				newUser.facebook.email = profile.emails[0].value;
+
+		    				newUser.save(function(err){
+		    					if(err)
+		    						throw err;
+		    					return done(null, newUser);
+		    				})
+		    			}
+		    		});
+	    		}
+
+	    		//user is logged in already, and needs to be merged
+	    		else {
+	    			var user = req.user;
+	    			user.facebook.id = profile.id;
+	    			user.facebook.token = accessToken;
+	    			user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+	    			user.facebook.email = profile.emails[0].value;
+
+	    			user.save(function(err){
+	    				if(err)
+	    					throw err
 	    				return done(null, user);
-					//no found & registor for new FB user	
-	    			else {
-	    				var newUser = new User();
-	    				newUser.facebook.id = profile.id;
-	    				newUser.facebook.token = accessToken;
-						newUser.facebook.firstName = profile.name.givenName;
-						newUser.facebook.lastName = profile.name.familyName;
-						newUser.facebook.email = profile.emails[0].value;
-	    				newUser.save(function(err){
-	    					if(err)
-	    						throw err;
-	    					return done(null, newUser);
-	    				})
-	    				console.log(profile);
-	    			}
-	    		});
+	    			})
+	    		}
+	    		
 	    	});
 	    }
 
