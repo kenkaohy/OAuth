@@ -1,6 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var ForceDotComStrategy = require('passport-forcedotcom').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 
 var User = require('../app/models/user');
 var configAuth = require('./auth');
@@ -179,4 +181,14 @@ passport.use(new FacebookStrategy({
 	    }
 
 	));//end google strategy	
+	
+    // =========================================================================
+    // SALESFORCE ==============================================================
+    // =========================================================================
+	
+    // =========================================================================
+    // TWITTER =================================================================
+    // =========================================================================	
+	
+		
 };
