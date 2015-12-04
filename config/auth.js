@@ -12,13 +12,22 @@ module.exports ={
 		'callbackURL': 'http://localhost:3000/auth/google/callback'		
 	},
 	'salesforceAuth':{
-		'clientID': 'enter client id here',
-		'clientSecret': 'enter client secret here',
-		'callbackURL': 'enter callback here'		
+		'clientID': '3MVG9Y6d_Btp4xp50waPOyk8QyonMQevRPETDFrOJCq_T5.SA0W3efJzEomB6h2gFAP5dAbYX6wR_5uqOOqxe',
+		'clientSecret': '1201159985336647286',
+		'callbackURL': 'https://localhost/auth/forcedotcom/callback',
+		'scope': 'sfdc_oppty_api',
+		'SF_AUTHORIZE_URL':'https://login.salesforce.com/services/oauth2/authorize',
+		'SF_TOKEN_URL':'https://login.salesforce.com/services/oauth2/authorize'		
 	},
 	'twitterAuth':{
+		'consumerKey': 'drpOeOSmGhHQYeAm2YjykY0lc',
+		'consumerSecret': 'kYlVrBTWmz5EvuUDpmNPsFa7zi9IlOeYEg5du5dPdWGsMjvVBY',
+		'callbackURL': 'http://127.0.0.1:3000/auth/twitter/callback'		
+	},
+	'githubAuth':{
 		'clientID': 'enter client id here',
 		'clientSecret': 'enter client secret here',
-		'callbackURL': 'enter callback here'		
+		'callbackURL': 'http://localhost:3000/auth/twitter/callback'		
 	}
+	
 }

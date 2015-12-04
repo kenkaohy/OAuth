@@ -60,18 +60,28 @@ module.exports = function(app, passport){
 	                                      failureRedirect: '/' }));
      
     //salesforce route
-
+    app.get('/auth/forcedotcom', passport.authenticate('forcedotcom'), function(req, res){
+        console.log(res);
+    });
+    app.get('/auth/forcedotcom/callback',
+        passport.authenticate('forcedotcom',{ successRedirect: '/profile',
+	                                           failureRedirect: '/' }));
     //twitter route
-    
-    
+    app.get('/auth/twitter',
+        passport.authenticate('twitter'));
+    app.get('/auth/twitter/callback', 
+        passport.authenticate('twitter',{ successRedirect: '/profile',
+	                                      failureRedirect: '/' }));
+                                          
+                                          
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================    
-    //link facebook account
+    //linking facebook account
 	app.get('/connect/facebook', passport.authorize('facebook', { scope: 'email' }));
-    //link google account	
+    //linking google account	
 	app.get('/connect/google', passport.authorize('google', { scope: ['profile', 'email'] }));
-    //link local account, display connect-local.hbs page
+    //linking local account, display connect-local.hbs page
 	app.get('/connect/local', function(req, res){
 		res.render('connect-local.hbs', { message: req.flash('signupMessage')});
 	});
