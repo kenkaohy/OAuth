@@ -200,14 +200,15 @@ passport.use(new FacebookStrategy({
 	passport.use(new ForceDotComStrategy({
 		clientID: configAuth.salesforceAuth.clientID,
 		clientSecret: configAuth.salesforceAuth.clientSecret,
-		callbackURL: configAuth.salesforceAuth.callbackURL	
-		//authorizationURL: configAuth.salesforceAuth.SF_AUTHORIZE_URL,
-		//tokenURL: configAuth.salesforceAuth.SF_TOKEN_URL
-		//scope: ['id','api']
-	}, function verify(token, refreshToken, profile, done) {
+		callbackURL: configAuth.salesforceAuth.callbackURL,
+		authorizationURL: configAuth.salesforceAuth.SF_AUTHORIZE_URL,
+		tokenURL: configAuth.salesforceAuth.SF_TOKEN_URL
+		//scope: ['full']
+	}, function verify(accessToken, refreshToken, profile, done) {
 		console.log(profile);
 		 // asynchronous verification, for effect...
-		 process.nextTick(function(){		 
+		 process.nextTick(function(){	
+			 	//delete profile._raw;//for security...	 
 				//search lcoal mongooDB
 	    		User.findOne({'salesforce.id': profile.id}, function(err, user){
 	    			if(err)
@@ -219,7 +220,7 @@ passport.use(new FacebookStrategy({
 	    			else {
 	    				var newUser = new User();
 	    				newUser.salesforce.id = profile.id;
-	    				newUser.salesforce.token = token;
+	    				newUser.salesforce.token = accessToken;
 	    				newUser.salesforce.name = profile.displayName;
 	    				newUser.salesforce.email = profile.emails;
 	    				newUser.save(function(err){

@@ -60,9 +60,7 @@ module.exports = function(app, passport){
 	                                      failureRedirect: '/' }));
      
     //salesforce route
-    app.get('/auth/forcedotcom', passport.authenticate('forcedotcom'), function(req, res){
-        console.log(res);
-    });
+    app.get('/auth/forcedotcom', passport.authenticate('forcedotcom'));
     app.get('/auth/forcedotcom/callback',
         passport.authenticate('forcedotcom',{ successRedirect: '/profile',
 	                                           failureRedirect: '/' }));
@@ -71,7 +69,9 @@ module.exports = function(app, passport){
         passport.authenticate('twitter'));
     app.get('/auth/twitter/callback', 
         passport.authenticate('twitter',{ successRedirect: '/profile',
-	                                      failureRedirect: '/' }));
+	                                      failureRedirect: '/' }), function(req,res){
+                                              res.redirect('/');
+                                          });
                                           
                                           
 // =============================================================================

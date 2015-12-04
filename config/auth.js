@@ -14,10 +14,10 @@ module.exports ={
 	'salesforceAuth':{
 		'clientID': '3MVG9Y6d_Btp4xp50waPOyk8QyonMQevRPETDFrOJCq_T5.SA0W3efJzEomB6h2gFAP5dAbYX6wR_5uqOOqxe',
 		'clientSecret': '1201159985336647286',
-		'callbackURL': 'https://localhost/auth/forcedotcom/callback',
+		'callbackURL': 'http://localhost:3000/auth/forcedotcom/callback',
 		'scope': 'sfdc_oppty_api',
 		'SF_AUTHORIZE_URL':'https://login.salesforce.com/services/oauth2/authorize',
-		'SF_TOKEN_URL':'https://login.salesforce.com/services/oauth2/authorize'		
+		'SF_TOKEN_URL':'https://login.salesforce.com/services/oauth2/token'		
 	},
 	'twitterAuth':{
 		'consumerKey': 'drpOeOSmGhHQYeAm2YjykY0lc',
