@@ -222,7 +222,7 @@ passport.use(new FacebookStrategy({
 	    				newUser.salesforce.id = profile.id;
 	    				newUser.salesforce.token = accessToken;
 	    				newUser.salesforce.name = profile.displayName;
-	    				newUser.salesforce.email = profile.emails;
+	    				newUser.salesforce.email = profile.emails[0]['value'];
 	    				newUser.save(function(err){
 	    					if(err)
 	    						throw err;
