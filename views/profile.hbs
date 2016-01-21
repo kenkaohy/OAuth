@@ -105,7 +105,7 @@
       {{/if}}       
       </div>
     </li>
-        <li>
+    <li>
       <div class="collapsible-header"><i class="mdi mdi-twitter" style="color:#4099FF;"></i>twitter</div>
       <div class="collapsible-body container">
       {{#if user.twitter.token}}
@@ -129,5 +129,30 @@
       {{/if}}          
       </div>
     </li>
+
+    <li>
+      <div class="collapsible-header"><i class="mdi mdi-github-circle"></i>twitter</div>
+      <div class="collapsible-body container">
+      {{#if user.github.token}}
+         <div class="row">
+          <div class="col s10 pull-s2">
+            <p>
+            Username:{{user.github.name}}<br>
+            Email:{{user.github.email}}<br>  
+            Github Id:{{user.github.id}}<br>
+            Token:{{user.github.token}}<br>
+            </p>     
+          </div>
+        </div>
+        <div class="row">
+           <div class="col s2 pull-s10"><a href="/unlink/twitter" class="waves-effect waves-light btn">unlink</a></div>
+        </div>        
+      {{else}}
+        <div class="row">
+           <div class="col s2 pull-s10"><a href="/connect/twitter" class="waves-effect waves-light btn">connect twitter</a></div>
+        </div>
+      {{/if}}          
+      </div>
+    </li>    
   </ul>
 </div>
